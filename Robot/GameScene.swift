@@ -77,7 +77,7 @@ class GameScene: SKScene {
 
             var blackHoleNode = SKSpriteNode(imageNamed: "BlackHole0")
             
-            let movementTimeInSecs: Double = 5.0
+            let movementTimeInSecs: Double = Double(randomInt(2, max: 10))
             
             //put the black hole in a random y position
             // then work out a random movement speed for it
@@ -88,7 +88,7 @@ class GameScene: SKScene {
             var moveAction: SKAction
             
             //generate a random moving direction
-            var moveUp: Bool = randomInt(1, max: 10) % 2 == Int(0)
+            var moveUp: Bool = randomYPos % 2 == Int(0)
             if (moveUp) {
                 //calculate the proportional time to travel the rest of the distance
                 var timeTaken = (Double(upperYBound - randomYPos) / Double(upperYBound - lowerYBound)) * movementTimeInSecs;
