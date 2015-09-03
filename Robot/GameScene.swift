@@ -7,6 +7,7 @@
 //
 
 import SpriteKit
+import CoreMotion
 
 class GameScene: SKScene {
 
@@ -54,7 +55,6 @@ class GameScene: SKScene {
         /* Called before each frame is rendered */
     }
     
-    
     func createBlackHoles() {
         println("Go off and create some black holes onto the scene")
         
@@ -68,16 +68,11 @@ class GameScene: SKScene {
         let animateAction = SKAction.animateWithTextures(blackHoleTextures, timePerFrame: 0.2)
         let rotateAction = SKAction.repeatActionForever(animateAction)
         
-        //let moveLeftAction = SKAction.moveToX(0.0, duration: 2.0)
-        //let moveRightAction = SKAction.moveToX(size.width, duration: 2.0)
-        //let actionSequence = SKAction.sequence([moveLeftAction, moveRightAction])
-        //let moveAction = SKAction.repeatActionForever(actionSequence)
-        
         for i in 1...10 {
 
             var blackHoleNode = SKSpriteNode(imageNamed: "BlackHole0")
             
-            let movementTimeInSecs: Double = Double(randomInt(2, max: 10))
+            let movementTimeInSecs: Double = Double(randomInt(1, max: 20))
             
             //put the black hole in a random y position
             // then work out a random movement speed for it
@@ -122,15 +117,6 @@ class GameScene: SKScene {
             blackHoleNode.runAction(rotateAction)
             
             self._foreground!.addChild(blackHoleNode)
-        }
-        
-        
-        
-        for i in 1...20 {
-            var k: Int = randomInt(1, max: 10)
-            var moveUp: Bool = k % 2 == Int(0)
-
-            println("Random number = \(k), odd = \(moveUp)")
         }
     }
     
