@@ -11,10 +11,16 @@ import CoreMotion
 
 class GameScene: SKScene {
 
-    var _player : SKSpriteNode?
-    var _foreground : SKSpriteNode?
+    var _player: SKSpriteNode?
+    var _foreground: SKSpriteNode?
     
+    let coreMotionManager = CMMotionManager()
+    var horizontalAcceleration: CGFloat = 0.0
     
+    //Game constants
+    let accelerometerUpdateInterval: NSTimeInterval = 0.1 //sec
+    let gravityPower: CGFloat = -2.0
+    let impulsePower: CGFloat = 15.0
     
     required init? (coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -24,6 +30,11 @@ class GameScene: SKScene {
     override init (size: CGSize) {
         super.init(size: size)
         
+        //self.physicsWorld.contactDelegate = self
+        
+        self.userInteractionEnabled = true
+        self.physicsWorld.gravity = CGVectorMake(0.0, gravityPower) //set the gravity power for the scene
+        
         //dealing with the foreground
         _foreground = SKSpriteNode()
         self.addChild(_foreground!)
@@ -32,11 +43,16 @@ class GameScene: SKScene {
         //create the player here
         _player = SKSpriteNode(imageNamed: "Robot")
         _player!.position = CGPointMake(50, self.size.height / 2)
+
+        _player!.physicsBody = SKPhysicsBody(circleOfRadius: _player!.size.height / 2) //attach physics body into a node
+        _player!.physicsBody!.dynamic = false
+        _player!.physicsBody!.allowsRotation = false //stop rotation upon collision
+        _player!.physicsBody!.linearDamping = 1.0 //simulate air friction to dampen velocity
+        
         _foreground!.addChild(_player!)
         
         
         createBlackHoles()
-        
     }
     
     
@@ -48,7 +64,12 @@ class GameScene: SKScene {
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         /* Called when a touch begins */
         
-        
+        if self._player!.physicsBody!.dynamic { //game play is in progress
+            self._player!.physicsBody!.applyImpulse(CGVectorMake(0.0, impulsePower))
+        }
+        else { //start the game here
+            self._player!.physicsBody!.dynamic = true
+        }
     }
    
     override func update(currentTime: CFTimeInterval) {
