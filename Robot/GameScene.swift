@@ -19,6 +19,7 @@ class GameScene: SKScene {
     var horizontalAcceleration: CGFloat = 0.0
     
     //Game constants
+    let horizontalAccelerationMultiple: CGFloat = 380
     let accelerometerUpdateInterval: NSTimeInterval = 0.1 //sec
     let gravityPower: CGFloat = -2.0
     let impulsePower: CGFloat = 15.0
@@ -27,6 +28,9 @@ class GameScene: SKScene {
         super.init(coder: aDecoder)
     }
     
+    deinit {
+        coreMotionManager.stopAccelerometerUpdates()
+    }
     
     override init (size: CGSize) {
         super.init(size: size)
@@ -75,9 +79,28 @@ class GameScene: SKScene {
             self._player!.physicsBody!.applyImpulse(CGVectorMake(0.0, impulsePower))
         }
         else { //start the game here
+            
+            coreMotionManager.accelerometerUpdateInterval = accelerometerUpdateInterval
+            coreMotionManager.startAccelerometerUpdatesToQueue(NSOperationQueue(), withHandler: {
+                (data: CMAccelerometerData!, error: NSError!) in
+            
+                if let constVar = error {
+                    println("Error with the accelerometer handler")
+                }
+                else {
+                    self.horizontalAcceleration = CGFloat(data!.acceleration.x)
+                }
+            })
+            
             _startGameLabel!.removeFromParent()
             self._player!.physicsBody!.dynamic = true
+            
         }
+    }
+    
+    override func didSimulatePhysics() {
+        //change the velocity of the player when the device is tilted
+        _player!.physicsBody!.velocity = CGVectorMake(horizontalAcceleration * horizontalAccelerationMultiple, _player!.physicsBody!.velocity.dy)
     }
    
     override func update(currentTime: CFTimeInterval) {

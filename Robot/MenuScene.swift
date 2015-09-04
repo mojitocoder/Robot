@@ -23,9 +23,9 @@ class MenuScene: SKScene {
             SKLabelHorizontalAlignmentMode.Center
         scoreTextNode.verticalAlignmentMode =
             SKLabelVerticalAlignmentMode.Center
-        scoreTextNode.fontSize = 20
+        scoreTextNode.fontSize = 40
         scoreTextNode.fontColor = SKColor.whiteColor()
-        scoreTextNode.position = CGPointMake(size.width / 2, size.height / 2)
+        scoreTextNode.position = CGPointMake(size.width / 2, size.height / 2 + 100)
         addChild(scoreTextNode)
         
         let tryAgainTextNodeLine1 = SKLabelNode(fontNamed: "Copperplate")
