@@ -18,10 +18,12 @@ class GameViewController: UIViewController {
         
         // 1. Configure the main view
         let skView = view as! SKView
-        skView.showsFPS = true
+        //skView.showsFPS = true
         
         // 2. Create and configure our game scene
-        scene = GameScene(size: skView.bounds.size)
+        //scene = GameScene(size: skView.bounds.size)
+        var scene = MenuScene(size: skView.bounds.size, score: 100)
+        
         scene.scaleMode = .AspectFill
         
         // 3. Show the scene.

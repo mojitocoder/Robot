@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		048588CF1B99E6150051831B /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048588CE1B99E6150051831B /* MenuScene.swift */; };
 		04EBFE881B97420C005BC7E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EBFE871B97420C005BC7E0 /* AppDelegate.swift */; };
 		04EBFE8A1B97420C005BC7E0 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 04EBFE891B97420C005BC7E0 /* GameScene.sks */; };
 		04EBFE8C1B97420C005BC7E0 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EBFE8B1B97420C005BC7E0 /* GameScene.swift */; };
@@ -29,6 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		048588CE1B99E6150051831B /* MenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
 		04EBFE821B97420C005BC7E0 /* Robot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Robot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04EBFE861B97420C005BC7E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04EBFE871B97420C005BC7E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 				04EBFE921B97420C005BC7E0 /* Images.xcassets */,
 				04EBFE941B97420C005BC7E0 /* LaunchScreen.xib */,
 				04EBFE851B97420C005BC7E0 /* Supporting Files */,
+				048588CE1B99E6150051831B /* MenuScene.swift */,
 			);
 			path = Robot;
 			sourceTree = "<group>";
@@ -224,6 +227,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04EBFE8C1B97420C005BC7E0 /* GameScene.swift in Sources */,
+				048588CF1B99E6150051831B /* MenuScene.swift in Sources */,
 				04EBFE8E1B97420C005BC7E0 /* GameViewController.swift in Sources */,
 				04EBFE881B97420C005BC7E0 /* AppDelegate.swift in Sources */,
 			);
@@ -421,6 +425,7 @@
 				04EBFEA71B97420C005BC7E0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		04EBFEA81B97420C005BC7E0 /* Build configuration list for PBXNativeTarget "RobotTests" */ = {
 			isa = XCConfigurationList;
@@ -429,6 +434,7 @@
 				04EBFEAA1B97420C005BC7E0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -82,6 +82,29 @@ class GameScene: SKScene {
    
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
+        
+        if _player != nil {
+            
+            //crash onto the floor or ceiling
+            if (_player!.position.y < _player!.size.height / 2)
+                || ((_player!.position.y + _player!.size.height / 2) > self.size.height) {
+                    gameOver()
+            }
+        }
+    }
+    
+    //TODO: pass score into MenuScene
+    func gameOver() {
+        _player!.removeFromParent()
+        _player = nil
+        
+        let transition = SKTransition.crossFadeWithDuration(2.0)
+        let menuScene = MenuScene(size: size, score: 1)
+        view!.presentScene(menuScene, transition: transition)
+        
+        //var scene = MenuScene(size: size, score: 10)
+        //scene.scaleMode = .AspectFill
+        //view?.presentScene(scene, transition: transition)
     }
     
     func createStartGameLabel() {
