@@ -13,6 +13,7 @@ class GameScene: SKScene {
 
     var _player: SKSpriteNode?
     var _foreground: SKSpriteNode?
+    var _startGameLabel: SKLabelNode?
     
     let coreMotionManager = CMMotionManager()
     var horizontalAcceleration: CGFloat = 0.0
@@ -53,6 +54,12 @@ class GameScene: SKScene {
         
         
         createBlackHoles()
+        
+
+        // ********************
+        // Start game node
+        // ********************
+        createStartGameLabel()
     }
     
     
@@ -68,12 +75,24 @@ class GameScene: SKScene {
             self._player!.physicsBody!.applyImpulse(CGVectorMake(0.0, impulsePower))
         }
         else { //start the game here
+            _startGameLabel!.removeFromParent()
             self._player!.physicsBody!.dynamic = true
         }
     }
    
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
+    }
+    
+    func createStartGameLabel() {
+        _startGameLabel = SKLabelNode(fontNamed: "Copperplate")
+        _startGameLabel!.text  = "TAP ANYWHERE TO START"
+        _startGameLabel!.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Center
+        _startGameLabel!.verticalAlignmentMode = SKLabelVerticalAlignmentMode.Center
+        _startGameLabel!.fontSize = 20
+        _startGameLabel!.fontColor = SKColor.whiteColor()
+        _startGameLabel!.position = CGPointMake(self.size.width / 2, self.size.height / 2)
+        _foreground!.addChild(_startGameLabel!)
     }
     
     func createBlackHoles() {
